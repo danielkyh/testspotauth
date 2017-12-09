@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title Here</title>
+    <link rel="stylesheet" type="text/css" href="CSS Here">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  </head>
+
+  <body>
+
+		<div>
+			HELLO JENNY
+		</div>
+    <script type="text/javascript">
+        $.QueryString = (function (paramsArray) {
+            let params = {};
+
+            for (let i = 0; i < paramsArray.length; ++i) {
+              let param = paramsArray[i]
+                .split('=', 2);
+
+              if (param.length !== 2)
+                continue;
+
+              params[param[0]] = decodeURIComponent(param[1].replace(/\+/g, " "));
+            }
+
+            return params;
+        })
+
+        var params = $.QueryString((window.location.search.substr(1).split('&')))
+        console.log(params);
+
+        var clientID = "33df74e9fe14409b96de744f35f548b2"
+
+        $.ajax({
+          type: "GET",
+          url: "https://accounts.spotify.com/authorize?client_id=5fe01282e94241328a84e7c5cc169164&redirect_uri=http:%2F%2Fexample.com%2Fcallback&scope=user-read-private%20user-read-email&response_type=token&state=123",
+          data: {"grant_type": "client_credentials"},
+          success: (response) => console.log(response),
+          headers: { 'Content-type': 'application/x-www-form-urlencoded',
+                      'Authorization': 'Basic MzNkZjc0ZTlmZTE0NDA5Yjk2ZGU3NDRmMzVmNTQ4YjI6NmUxZmI0MzQxODY1NDVjMGIxMTViNmUwMDM5NjE2ZWU='}
+        })
+    </script>
+  </body>
+</html>
