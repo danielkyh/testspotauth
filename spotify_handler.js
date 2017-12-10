@@ -15,7 +15,7 @@ console.log(hashParams);
 $(document).ready(function() {
   $('#search-button').on("click", function() {
     let albumName = $('#search').val()
-    let queryURL = "https://api.spotify.com/v1/search?type=album&market=US&limit=5&q=" + albumName
+    let queryURL = "https://api.spotify.com/v1/search?type=album&market=US&limit=1&q=" + albumName
     $.ajax({
       type: "GET",
       url: queryURL,
@@ -24,7 +24,10 @@ $(document).ready(function() {
       },
       dataType: 'json'
     }).done(function(response) {
-      console.log(response)
+      let albumName = response[0].id;
+      var iframeURL = "https: //open.spotify.com/embed?uri=spotify:album:" + albumName;
+      $('#spotify-player').attr('src', iframeUrl);
+      $('#spotify-player').show();
     })
   })
 })
