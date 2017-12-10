@@ -21,7 +21,7 @@ $(document).ready(function() {
       url: queryURL,
       headers: {
         "Authorization": "Bearer " + hashParams.access_token
-      }
+      },
       dataType: 'json'
     }).done(function(response) {
       console.log(response)
