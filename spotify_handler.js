@@ -24,10 +24,11 @@ $(document).ready(function() {
       },
       dataType: 'json'
     }).done(function(response) {
-      let albumName = response[0].id;
-      var iframeURL = "https: //open.spotify.com/embed?uri=spotify:album:" + albumName;
-      $('#spotify-player').attr('src', iframeUrl);
-      $('#spotify-player').show();
+      console.log(response)
+      // let albumName = response[0].id;
+      // var iframeURL = "https: //open.spotify.com/embed?uri=spotify:album:" + albumName;
+      // $('#spotify-player').attr('src', iframeUrl);
+      // $('#spotify-player').show();
     })
   })
 })
