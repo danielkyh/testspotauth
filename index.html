@@ -1,46 +1,34 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Title Here</title>
-    <link rel="stylesheet" type="text/css" href="CSS Here">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-  </head>
 
-  <body>
+<head>
+  <title>Title Here</title>
+  <link rel="stylesheet" type="text/css" href="CSS Here">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+</head>
 
-		<div>
-			HELLO JENNY
-		</div>
-    <script type="text/javascript">
-        $.QueryString = (function (paramsArray) {
-            let params = {};
+<body>
+  <div>HELLO JENNY</div>
+  <script type="text/javascript">
+    var hash = window.location.hash.substr(1);
 
-            for (let i = 0; i < paramsArray.length; ++i) {
-              let param = paramsArray[i]
-                .split('=', 2);
+    var hashParams = hash.split('&').reduce(function (result, item) {
+      var parts = item.split('=');
+      result[parts[0]] = parts[1];
+      return result;
+    }, {});
 
-              if (param.length !== 2)
-                continue;
+    var clientID = "33c8e9e18c914c99a33a2ef7ff6d1a60"
 
-              params[param[0]] = decodeURIComponent(param[1].replace(/\+/g, " "));
-            }
+    var getToken = function () {
+      $.ajax({
+        type: "GET",
+        url: "https://accounts.spotify.com/authorize?redirect_uri=https://danielkyh.github.io/testspotauth/index.html&client_id=33c8e9e18c914c99a33a2ef7ff6d1a60&response_type=token",
+      }).done((response) => {
+        console.log(response)
+      })
+    }
+  </script>
+</body>
 
-            return params;
-        })
-
-        var params = $.QueryString((window.location.search.substr(1).split('&')))
-        console.log(params);
-
-        var clientID = "33df74e9fe14409b96de744f35f548b2"
-
-        $.ajax({
-          type: "GET",
-          url: "https://accounts.spotify.com/authorize?client_id=5fe01282e94241328a84e7c5cc169164&redirect_uri=http:%2F%2Fexample.com%2Fcallback&scope=user-read-private%20user-read-email&response_type=token&state=123",
-          data: {"grant_type": "client_credentials"},
-          success: (response) => console.log(response),
-          headers: { 'Content-type': 'application/x-www-form-urlencoded',
-                      'Authorization': 'Basic MzNkZjc0ZTlmZTE0NDA5Yjk2ZGU3NDRmMzVmNTQ4YjI6NmUxZmI0MzQxODY1NDVjMGIxMTViNmUwMDM5NjE2ZWU='}
-        })
-    </script>
-  </body>
 </html>
