@@ -26,7 +26,7 @@ $(document).ready(function() {
     }).done(function(response) {
       console.log(response)
       let albumName = response.albums.items[0].id;
-      let iframeURL = "https: //open.spotify.com/embed?uri=spotify:album:" + albumName;
+      let iframeURL = "https://open.spotify.com/embed?uri=spotify:album:" + albumName;
       $('#spotify-player').attr('src', iframeURL);
       $('#spotify-player').show();
     })
