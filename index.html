@@ -5,27 +5,19 @@
   <title>Title Here</title>
   <link rel="stylesheet" type="text/css" href="CSS Here">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="spotify_handler.js"></script>
 </head>
 
 <body>
   <div>HELLO JENNY</div>
-  <script type="text/javascript">
 
-    var hash = window.location.hash.substr(1);
+  <input id="search" placeholder="Search albums here"/>
+  <button id="search-button">Search</button>
 
-    if (hash == "") {
-      window.location = "https://accounts.spotify.com/authorize?redirect_uri=https://danielkyh.github.io/testspotauth/index.html&client_id=33c8e9e18c914c99a33a2ef7ff6d1a60&response_type=token"
-    }
+  <div id="albums-container">
 
-    var hashParams = hash.split('&').reduce(function (result, item) {
-      var parts = item.split('=');
-      result[parts[0]] = parts[1];
-      return result;
-    }, {});
+  </div>
 
-    console.log(hashParams);
-
-  </script>
 </body>
 
 </html>
