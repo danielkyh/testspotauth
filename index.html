@@ -10,7 +10,12 @@
 <body>
   <div>HELLO JENNY</div>
   <script type="text/javascript">
+
     var hash = window.location.hash.substr(1);
+
+    if (hash == "") {
+      window.location = "https://accounts.spotify.com/authorize?redirect_uri=https://danielkyh.github.io/testspotauth/index.html&client_id=33c8e9e18c914c99a33a2ef7ff6d1a60&response_type=token"
+    }
 
     var hashParams = hash.split('&').reduce(function (result, item) {
       var parts = item.split('=');
@@ -18,16 +23,8 @@
       return result;
     }, {});
 
-    var clientID = "33c8e9e18c914c99a33a2ef7ff6d1a60"
+    console.log(hashParams);
 
-    var getToken = function () {
-      $.ajax({
-        type: "GET",
-        url: "https://accounts.spotify.com/authorize?redirect_uri=https://danielkyh.github.io/testspotauth/index.html&client_id=33c8e9e18c914c99a33a2ef7ff6d1a60&response_type=token",
-      }).done((response) => {
-        console.log(response)
-      })
-    }
   </script>
 </body>
 
